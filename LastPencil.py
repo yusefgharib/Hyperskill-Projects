@@ -95,7 +95,6 @@ while int(num_pencils) > 0:
     # noinspection PyUnboundLocalVariable
     while int(take) > int(num_pencils):
         take = input("Too many pencils were taken\n")
-
     num_pencils = int(num_pencils) - int(take)
     if num_pencils == 0:
         if player == "Jack":
