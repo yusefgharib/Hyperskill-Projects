@@ -3,15 +3,16 @@ take_one, take_two, take_three, winning_num = [1, ], [], [], []
 
 num_pencils = input("How many pencils would you like to use?\n")
 
-if(num_pencils.isdigit()):
-    for i in range(5, int(num_pencils) + 1, 4):  
+if num_pencils.isdigit():
+    for i in range(5, int(num_pencils) + 1, 4):
         winning_num.append(i)
-    for i in range(3, int(num_pencils) + 1, 4):  
+    for i in range(3, int(num_pencils) + 1, 4):
         take_two.append(i)
-    for i in range(2, int(num_pencils) + 1, 4):  
+    for i in range(2, int(num_pencils) + 1, 4):
         take_one.append(i)
-    for i in range(4, int(num_pencils) + 1, 4):  
-        take_three.append(i)  
+    for i in range(4, int(num_pencils) + 1, 4):
+        take_three.append(i)
+
 
 def numeric():
     global num_pencils
@@ -23,6 +24,7 @@ def numeric():
         return positive()
     return True
 
+
 def positive():
     global num_pencils
     while not num_pencils.isnumeric():
@@ -33,38 +35,42 @@ def positive():
         return positive()
     return True
 
+
 def bot_func():
     global take, num_pencils, player
-    if(int(num_pencils) in take_one and player == bot):
+    if int(num_pencils) in take_one and player == bot:
         take = '1'
         print(take)
-    if(int(num_pencils) in take_two and player == bot):
+    if int(num_pencils) in take_two and player == bot:
         take = '2'
         print(take)
-    if(int(num_pencils) in take_three and player == bot):
+    if int(num_pencils) in take_three and player == bot:
         take = '3'
         print(take)
-    if(int(num_pencils) in winning_num and player == bot):
+    if int(num_pencils) in winning_num and player == bot:
         take = '2'
         print(take)
     return take
-    
+
+
 def name():
     global player
     while player == name1 or player == name2:
         return True
     return False
-    
+
+
 def take_check():
-      global take
-      while not take.isnumeric():
-          take = input("Possible values: '1', '2', or '3'\n")
-          return take_check()
-      while int(take) > 3 or int(take) < 1:
-          take = input("Possible values: '1', '2', or '3'\n")
-          return take_check()
-      return True
-         
+    global take
+    while not take.isnumeric():
+        take = input("Possible values: '1', '2', or '3'\n")
+        return take_check()
+    while int(take) > 3 or int(take) < 1:
+        take = input("Possible values: '1', '2', or '3'\n")
+        return take_check()
+    return True
+
+
 while not numeric():
     num_pencils = input("The number of pencils should be numeric")
 while not positive():
@@ -77,15 +83,16 @@ while not name():
 
 while int(num_pencils) > 0:
     print(f"{player}'s turn:")
-    print("|" * int(num_pencils))  
+    print("|" * int(num_pencils))
 
-    if(player == "Jack"):
-      bot_func()
-    else:  
-      take = input()
+    if player == "Jack":
+        bot_func()
+    else:
+        take = input()
 
     while not take_check():
         take = input("Possible values: '1', '2', or '3'\n")
+    # noinspection PyUnboundLocalVariable
     while int(take) > int(num_pencils):
         take = input("Too many pencils were taken\n")
 
